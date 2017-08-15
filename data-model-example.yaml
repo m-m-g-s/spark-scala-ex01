@@ -1,0 +1,14 @@
+table: simple_report
+schema:
+  - number: 1
+    column: name
+    dataType: string
+  - number: 2
+    column: age
+    dataType: int
+  - number: 3
+    column: birthdate
+    dataType: date
+  - number: 4
+    column: gender
+    dataType: string

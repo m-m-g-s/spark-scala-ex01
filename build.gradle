@@ -1,0 +1,65 @@
+apply plugin: "scala"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+def versions = [
+        scalaMajor: "2.11",
+        scalaMinor: "7",
+        scalaTest : "3.0.3",
+
+        spark     : "2.2.0",
+        sparkCsv  : "1.5.0",
+
+        snakeYaml : "1.18",
+        gson      : "2.0"
+]
+
+def libs = [
+        scala    : "org.scala-lang:scala-library:${versions.scalaMajor}.${versions.scalaMinor}",
+        scalaTest: "org.scalatest:scalatest_${versions.scalaMajor}:${versions.scalaTest}",
+
+        snakeyaml: "org.yaml:snakeyaml:${versions.snakeYaml}",
+        gson     : "com.google.code.gson:gson:${versions.gson}",
+
+
+        sparkCore: "org.apache.spark:spark-core_${versions.scalaMajor}:${versions.spark}",
+        sparkSql : "org.apache.spark:spark-sql_${versions.scalaMajor}:${versions.spark}",
+        sparkCsv : "com.databricks:spark-csv_${versions.scalaMajor}:${versions.sparkCsv}"
+
+]
+
+dependencies {
+    compile(
+            libs.snakeyaml,
+            libs.sparkCsv,
+            libs.gson,
+    )
+    compileOnly(
+            libs.scala,
+            libs.sparkCore,
+            libs.sparkSql,
+            libs.scala,
+            libs.sparkCore,
+            libs.sparkSql
+    )
+    testCompile(
+            libs.scala,
+            libs.scalaTest
+    )
+}
+
+jar {
+    from {
+        (configurations.runtime).collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    manifest {
+        attributes("Main-Class": "io.mmgs.ex01.SimpleReport")
+    }
+}

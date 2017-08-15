@@ -1,0 +1,10 @@
+sparkAppName: "Simple Report"
+sparkMaster: "local[*]"
+dataModel: "test.yaml"
+dataFile: "test.csv"
+dataHeaderExists: true
+dataDelimiter: ","
+dataQuote: "'"
+dataDateFormat: "dd-MM-yyyy"
+dataTimestampFormat: "dd-MM-yyyy hh:mm:ss"
+reportFile: "test.txt"

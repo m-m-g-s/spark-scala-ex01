@@ -1,0 +1,14 @@
+table:
+schema:
+  - number: 1
+    column: col1
+    dataType: string
+  - number: 2
+    column: col2
+    dataType: int
+  - number: 3
+    column: col3
+    dataType: boolean
+  - number: 4
+    column: col4
+    dataType: date
